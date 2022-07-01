@@ -1,0 +1,30 @@
+<div class="character-card">
+
+    <div  class="search">
+        <form #f="ngForm" (ngSubmit)="getDataCharacter(search.value)">
+            <input type="text" placeholder="Pesquisar personagem" #search name="search">
+        </form>
+        <button #enviar type="submit" (click)="getDataCharacter(search.value)" class="btnSearch"> <mat-icon>search</mat-icon></button>
+    </div>
+
+    <form action="" class="formulario">
+        <div class="data-character">
+            <h1>{{ character.name}} #{{character.id}}</h1>
+            <img [src]="imgUrl" alt="" class="image"> 
+        </div>
+        <h4>Selecione a história</h4>
+        <select type="text" name="storie" #storie on-change="getCreator(storie.value, 'storie')">
+            <option value="" disabled selected></option>
+            <option  *ngFor="let storie of character?.stories.items" value={{storie.resourceURI}}>{{storie.name}}</option>
+        </select>
+        <h4>Selecione o criador</h4>
+        <select type="text" name="creator" #creator on-change="getCreator(creator.value, 'creator')">
+            <option value="" disabled selected></option>
+            <option *ngFor="let creator of stories?.creators.items" value={{creator.resourceURI}}>{{creator.name}}</option>
+        </select>
+
+    </form>
+
+    
+    
+</div>

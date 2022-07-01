@@ -1,0 +1,23 @@
+<div class="creator-card">
+    <div class="data">
+        <h1>{{ creator?.fullName}}</h1>
+        <img [src]="imgUrl" alt="" class="image">
+
+        <div>
+            <div *ngIf="creator?.comics.available > 0">
+                <h2>Comics:</h2>
+                <div *ngFor="let comic of creator?.comics.items">
+                    <span>{{comic.name}}</span>
+                </div>
+            </div>
+    
+            <div *ngIf="creator?.stories.available > 0">
+                <h2>Stories:</h2>
+                <div *ngFor="let storie of creator?.stories.items">
+                    <span>{{storie.name}}</span>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="character-card">
+    <div *ngIf="character" class="data">
+        <div>
+            <div>
+                <div class="name">
+                 <h1> {{ character?.name}} #{{character?.id}}</h1>
+                </div>
+                <div class="description" *ngIf="character.description !== ''">
+                    <span> Descrição: </span>
+                    <p> {{ character?.description }}</p>
+                </div> 
+            </div>
+            <div>
+                <img [src]="imgUrl" class="image" alt="">
+            </div>
+        </div>
+        <div *ngIf="character.stories.available > 0">
+            <h2>Histórias</h2>
+            <div *ngFor="let storie of character.stories.items">
+                <span> {{ storie.name}}</span>
+            </div>
+        </div>
+        <div *ngIf="character.urls.length > 0">
+            <h3> Mais informações </h3>
+            <div *ngFor="let url of character?.urls">
+                <a [href]="url.url"> {{ url.type }}</a>
+            </div>
+        </div>
+        
+    </div>
+</div>

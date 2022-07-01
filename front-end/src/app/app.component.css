@@ -1,0 +1,20 @@
+header {
+    height: 10%;
+    min-height: 150px;
+}
+
+.content-pages {
+    height: auto;
+    min-height: 75%;
+    width: 100%;
+    padding-top: 20px;
+    background: url("../assets/scale.jfif") no-repeat;
+    background-size: 100%;
+    opacity: 1;
+    background-color: #060606;
+}
+
+footer {
+    height: auto;
+}
+

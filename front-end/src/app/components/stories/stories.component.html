@@ -1,0 +1,60 @@
+<div class="stories-card">
+<!--
+    <div class="search">
+        <form #f="ngForm" (ngSubmit)="storiesSearch(search.value)">
+            <input type="text" placeholder="Pesquisar História" #search name="search">
+        </form>
+        <button #enviar type="submit" (click)="storiesSearch(search.value)" class="btnSearch"> <mat-icon>search</mat-icon></button>
+    
+    </div> 
+-->
+    <div class="content">   
+        <table
+        mat-table
+        [dataSource]="stories"
+        matSort
+        matSortActive="id"
+        martSortDisableClear 
+        marSortDirection="desc" 
+        >
+        <ng-container *ngFor="let oColumn of storiesColumns"  [matColumnDef]="oColumn.property">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ oColumn.label }}
+            </th>
+            <ng-container *ngIf="oColumn.type === 'text'">
+            <td mat-cell *matCellDef="let row">
+                {{ row[oColumn.property] }}
+            </td>
+            </ng-container> 
+            <ng-container *ngIf="oColumn.type === 'button'">
+            <td mat-cell *matCellDef="let row">
+                <button
+                (click)="visulizeStorie(row.id)"
+                mat-icon-button
+                type="button"
+                color="dark"
+                title="Ver mais"
+                >
+                <mat-icon>remove_red_eye</mat-icon>
+                </button>
+            </td>
+            </ng-container>
+        </ng-container>
+
+        <ng-container>
+            <ng-container>
+                <tr mat-header-row *matHeaderRowDef="storiesHeaders"></tr>
+                <tr mat-row *matRowDef="let row; columns: storiesHeaders"></tr>
+            </ng-container>
+        </ng-container>
+
+        </table>
+    </div>
+   
+    <mat-paginator
+        [length]="resultsLength"
+        (page)="getStories($event)"
+        [pageSizeOptions]="[10, 25, 50, 100]"
+    >
+    </mat-paginator>
+</div>

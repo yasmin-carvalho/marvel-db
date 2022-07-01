@@ -1,0 +1,84 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "API Marvel",
+    "description": "Documentação da API da Marvel - BD2"
+  },
+  "host": "localhost:3000",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "JMeter",
+      "description": "Somente para testes do JMeter"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "securityDefinitions": {
+    "apiKeyAuth": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "authorization",
+      "description": "Insira o token seguido de 'Bearer '"
+    }
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/jmeter/{limit}": {
+      "get": {
+        "tags": [
+          "JMeter"
+        ],
+        "summary": "Aplica o teste do JMeter",
+        "description": "Estressa com request carregado de entidades",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/RespostaJMeter"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "RespostaCarga": {
+      "type": "object",
+      "properties": {
+        "Status": {
+          "type": "string",
+          "example": "Carga feita com sucesso"
+        }
+      }
+    },
+    "RespostaJMeter": {
+      "type": "object",
+      "properties": {
+        "Status": {
+          "type": "string",
+          "example": "Banco estressado com sucesso"
+        },
+        "Data": {
+          "type": "string",
+          "example": "Objeto com todos os dados"
+        }
+      }
+    }
+  }
+}

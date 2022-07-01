@@ -1,0 +1,58 @@
+<div class="character-card">
+    <div  class="search">
+        <form #f="ngForm" (ngSubmit)="characterSearch(search.value)">
+            <input type="text" placeholder="Pesquisar personagem" #search name="search">
+           
+        </form>
+        <button #enviar type="submit" (click)="characterSearch(search.value)" class="btnSearch"> <mat-icon>search</mat-icon></button>
+    </div>
+    <div class="content">   
+        <table
+            mat-table
+            [dataSource]="characters"
+            matSort
+            matSortActive="id"
+            martSortDisableClear 
+            marSortDirection="desc" 
+        >
+        <ng-container *ngFor="let oColumn of charactersColumns"  [matColumnDef]="oColumn.property">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ oColumn.label }}
+            </th>
+            <ng-container *ngIf="oColumn.type === 'text'">
+            <td mat-cell *matCellDef="let row">
+                {{ row[oColumn.property] }}
+            </td>
+            </ng-container> 
+            <ng-container *ngIf="oColumn.type === 'button'">
+            <td mat-cell *matCellDef="let row">
+                <button
+                (click)="viewCharacterInfo(row.id)"
+                mat-icon-button
+                type="button"
+                color="dark"
+                title="Editar"
+                >
+                <mat-icon>remove_red_eye</mat-icon>
+                </button>
+            </td>
+            </ng-container>
+        </ng-container>
+
+        <ng-container>
+            <ng-container>
+                <tr mat-header-row *matHeaderRowDef="charactersHeaders"></tr>
+                <tr mat-row *matRowDef="let row; columns: charactersHeaders"></tr>
+            </ng-container>
+        </ng-container>
+
+        </table>
+    </div>
+   
+    <mat-paginator
+        [length]="resultsLength"
+        (page)="getCharacters($event)"
+        [pageSizeOptions]="[10, 25, 50]"
+    >
+    </mat-paginator>
+</div>

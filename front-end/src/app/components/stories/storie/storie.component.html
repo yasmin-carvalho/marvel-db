@@ -1,0 +1,13 @@
+<div class="storie-card">
+    <div *ngIf="storie" class="data">
+        <h1>{{ storie.title }}</h1>
+        <p> {{ storie.description }}</p>
+        <h2>Personagens</h2>
+        <div *ngFor="let character of storie.characters.items ">
+            <div class="card-character">
+                <span>Name: </span>
+                <span>{{ character.name}}</span>
+            </div>
+        </div>
+    </div>
+</div>
